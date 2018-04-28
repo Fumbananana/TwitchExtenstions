@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
+
+    http://aws.amazon.com/apache2.0/
+
+or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. -->
+<!--  Use this file as a starting point for your viewer extension view. -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/viewer.css">
+        <link rel="stylesheet" href="css/rangeslider.css">
+        <link rel="stylesheet" href="css/aggDist.css">
+        <link rel="shortcut icon" type="png" href="/img/chessFavicon.png">
+    </head>
+    <body>
+        <script type="text/javascript" src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+
+        <!-- Aggregator and Ready Extension -->
+        <div><img id="image" src="default.png" style="visibility: hidden; width: 90%; padding-left: 15px; padding-top: 100px; position: absolute;"></div>
+        <div id="extension" style="visibility: visible;">
+        <p id="aggHeading">Select Aggregator<span class="underline3"></p>
+        <div class="help-tip" style="margin-right: 47px; margin-top: 145px;">
+          <p style="margin-top: 8px; margin-right: -2px; width: 205px;">The remaining time on the clock will be skipped, once enough voters are ready. You can only be ready if you voted for a move.</p>
+        </div>
+
+        <div id="aggWrapper">
+            <select id="aggrMenu" value="form-control">
+                <option id="option" value="none">....</option>
+                <option id="option" value="pc">PC</option>
+                <option id="option" value="ec">EC</option>
+                <option id="option" value="cc">CC</option>
+                <option id="option" value="rl">RL</option>
+                <option id="option" value="el">EL</option>
+                <option id="option" value="cl">CL</option>
+            </select>
+        </div>
+
+        <p id="readyHeading">Be Ready<span class="underline4"></p>
+        <div class="help-tip">
+          <p style="margin-top: 8px; margin-right: 3px; width: 250px;">Choose from the drop down menu the aggregation method of your choice. The aggregator with the most votes will be activated.</p>
+        </div>
+        <div id="readyWrapper">
+            <button id="ready">Ready!</button>
+        </div>
+
+        <!-- TIME Slide -->
+
+
+        <div class="help-tip" style="margin-right: -5px; margin-top: 253px;">
+          <p style="z-index: 1; width: 250px; margin-right: -1px; margin-top: 0px;">You can change the default value to your preference. The configured time is a computed average of all preferences from all players.</p>
+        </div>
+
+        <div id="divSilderTime">
+            <input id="timeSlider" type="range" min="30" max="300" value="180" step="5" data-rangeslider>
+            <h1 id="sliderHeading" style="padding-bottom: 0px; margin-top: 5px;"><u>Current Time Per Turn</u>: <span id="timeV"></span></h1>
+            <h1 id="sliderHeading" style=""><u>Your Preference</u>:  <output></output><span> sec</span></h1>
+        </div>
+
+        <!-- READY Slider -->
+
+        <div class="help-tip" style="margin-right: -5px; margin-top: 358px;">
+          <p style="z-index: 1; width: 250px; margin-right: -1px; margin-top: 0px;">You can change the default value to your preference. The configured threshold is a computed average of all preferences from all players.</p>
+        </div>
+
+        <div id="divSilderReady" style="padding-top: 20px;">
+            <input id="readySlider" style="font-size: 1.19em;" type="range" min="0" max="100" value="50" step="1" data-rangeslider>
+            <h1 id="sliderHeading" style="margin-top: 5px; margin-bottom: 0px;"><u>Current Ready Threshold</u>:  <span id="readyV" value="ready"> %</span></h1>
+            <h1 id="sliderHeading" style="margin-top: 7px; margin-bottom: 10px;"><u>Your Preference</u>:  <output></output><span> %</span></h1>
+        </div>
+
+        <button id="button" data-behaviour="toggle" style="visibility: hidden;">Disable</button>
+    </div>
+
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/viewerButtonsSliders.js"></script>
+        <script type="text/javascript" src="js/json3.min.js"></script>
+        <script type="text/javascript" src="js/agg.js"></script>
+        <script type="text/javascript" src="js/rdy.js"></script>
+        <script type="text/javascript" src="js/rangeslider.js"></script>
+
+    </body>
+</html>
+

@@ -1,0 +1,45 @@
+                body {
+                  background-color: #34343c;
+                  font: 12px arial, sans-sarif;
+                  font-size: 0.8em;
+                  font-weight: bolder;
+                  color: #e4e4e4;
+                  text-shadow: 2px -1px 7px rgb(0, 0, 0);
+                }
+                table {
+                    width: 280px;
+                    table-layout: fixed;
+                    border: none;
+                }
+                tr:nth-child(odd) {
+                    background-color: none;
+                    opacity: .999;
+                }
+                td {
+
+                }
+                td {
+                    position: relative;
+                }
+                .bg {
+                    border-radius: 9px;
+                    border: 0.8px solid #ffffff91;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    background-color: #380058;
+                    z-index: -1;
+                    height: 90%;
+                }
+
+                .bg2 {
+                    border-radius: 9px;
+                    border: 0.8px solid #ffffff91;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    background-color: #98009a52;
+                    z-index: -1;
+                }

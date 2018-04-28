@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
+    http://aws.amazon.com/apache2.0/
+or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. -->
+<!-- Use this file as a starting point for your viewer extension view. -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/viewer.css">
+        <link rel="stylesheet" type="text/css" href="css/chessboard-0.3.0.css">
+        <link rel="shortcut icon" type="png" href="/img/chessFavicon.png">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+    </head>
+    <body>
+        <script type="text/javascript" src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script> 
+        
+        <!-- Board Extension -->
+    <div><img id="image" src="default.png" style="visibility: visible; width: 90%; padding-left: 15px; padding-top: 100px; position: absolute;"></div>
+    <div id="extension" style="visibility: hidden;">
+        <p id="boardHeading">Make Your Move<span class="underline"></span></p>
+
+        <div class="help-tip" style="margin-right: 15px; margin-top: 5px;">
+          <p style="margin-top: 8px; margin-right: -2px; z-index: 1; width: 250px;">Select your move for the current turn by dragging and dropping the chess piece of your choice. The pink squares show source and target of your move suggestion. The grey squares indicate possible moves. In case of problems, right click on the panel and press 'reload frame'.</p>
+        </div>
+
+        <div id="board" style="width:250px; margin-top: -25px;"></div>
+
+        <p style="padding-bottom: 92px;"></p>
+
+        <div id="promotion-dialog">
+            <ol id="promote-to">
+                <li class="ui-state-default"><span class="piece-name">q</span><img class="promotion-piece-q promotion-piece" /></li>
+                <li class="ui-state-default"><span class="piece-name">r</span><img class="promotion-piece-r promotion-piece" /></li>
+                <li class="ui-state-default"><span class="piece-name">n</span><img class="promotion-piece-n promotion-piece" /></li>
+                <li class="ui-state-default"><span class="piece-name">b</span><img class="promotion-piece-b promotion-piece" /></li>
+            </ol>
+        </div>
+
+        <!-- Statistics Extension -->
+
+        <div class="help-tip" style="margin-right: 15px; margin-top: 360px">
+          <p style="margin-top: -2px; margin-right: -2px; z-index: 1; width: 240px;">Your scores get updated with every move suggestion you make. To read more about expertise and conformity hover over the ? on the right side.</p>
+        </div>
+
+        <button id="resignButton" style="width: 190px;
+                    height: 20px;
+                    background-color: #aaa8c6;
+                    color: white;
+                    text-align: center;
+                    margin-left: 68px;
+                    position: absolute;
+                    margin-top: -82px;
+                    border: solid;
+                    font-size: 1em;
+                    border-width: 1px;"><p id="#text" style="margin-top: 0px;">RESIGN</p></button>
+        <p id="statsHeading" style="margin-top: -50px;">Personal Statistics<span class="underline2"></p>
+
+        <div id="personalStats">
+            <div class="help-tip" style="font-size: 12px; margin-top: 404px; width: 16px; height: 16px; line-height: 1.5;">
+                <p style="margin-top: -2px; margin-right: -2px; z-index: 1; width: 210px;">Expertise is based on the quality of your move suggestion.</p>
+            </div>
+            <p id='stats'><u>Expertise:</u>
+                <p id="expertise" value="expertise"></p>
+            </p>
+            <div class="help-tip" style="font-size: 12px; margin-top: 434px; width: 16px; height: 16px; line-height: 1.5;">
+                <p style="margin-top: -25px; margin-right: -2px; z-index: 1; width: 210px;">Conformity is based on the popularity of your move suggestion.</p>
+            </div>
+            <p id='stats'><u>Conformity:</u>
+                <p id="conformity" value="conformity"></p>
+            </p>
+        </div>
+    </div>
+
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/chess2.js"></script>
+        <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/chess.js"></script>
+        <script type="text/javascript" src="js/viewerBoardStats.js"></script>
+        <script type="text/javascript" src="js/json3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    </body>
+</html>

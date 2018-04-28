@@ -1,0 +1,134 @@
+
+<!doctype html>
+<!-- Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
+    http://aws.amazon.com/apache2.0/
+or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. -->
+<!-- Use this file as a starting point for your viewer extension view. -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/viewer.css">
+        <link rel="stylesheet" href="css/aggDist.css">
+        <link rel="shortcut icon" type="png" href="/img/chessFavicon.png">
+    </head>
+    <body>
+        <script type="text/javascript" src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script> 
+        
+        <div><img id="image" src="default.png" style="visibility: visible; width: 90%; padding-left: 15px; padding-top: 100px; position: absolute;"></div>
+        <div id="extension" style="visibility: hidden;">
+        <p id="aggHeadingDist">Current Aggregator Distribution<span class="underline5"></p>
+        <div class="help-tip" style="margin-top: 33px; margin-right: 38px;">
+          <p style="z-index: 1; width: 216px;">The table shows the current distribution of all aggregator votes. To read more about the different aggregators hover over the ? on the right side.</p>
+        </div>
+
+        <div id="containerDist" style="font-size: 1.1em; padding-left: 20px;">
+          <table style="margin-bottom: -9px;">
+              <tr>
+                  <td style="width: 45px;">AGG.</td>
+                  <td>
+                      <div class="" style="width: 0%;"> VOTES</div>
+                  </td>
+                  <td style="width: 15px; padding-left: 15px;">#</td>
+              </tr>
+          </table>
+
+          <hr style="width: 270px; margin-left: 0px;">
+
+          <table>
+              <tr>
+                  <div class="help-tip" style="font-size: 12px; margin-top: 121px; margin-right: -7px; width: 16px; height: 16px; line-height: 1.5;">
+                    <p style="z-index: 1; width: 250px;">The move is executed that most of you wanted.</p>
+                  </div>
+                  <td style="width: 50px;">PC</td>
+                  <td>
+                      <div id="pcAgg" class="bg" style="width: 0%;"></div>
+                  </td>
+                  <td id="pcVotes" value="pc"></td>
+              </tr>
+              <tr>
+                  <div class="help-tip" style="font-size: 12px; margin-top: 141px; margin-right: -7px; width: 16px; height: 16px; line-height: 1.5;">
+                    <p style="z-index: 1; width: 250px;">A weighted plurality vote. Your weight is based on your expertise value (i.e., how many good moves you have suggested).</p>
+                  </div>
+                  <td>EC</td>
+                  <td>
+                      <div id="ecAgg" class="bg" style="width: 0%;"></div>
+                  </td>
+                  <td id="ecVotes" value="ec"></td>
+              </tr>
+              <tr>
+                  <div class="help-tip" style="font-size: 12px; margin-top: 161px; margin-right: -7px; width: 16px; height: 16px; line-height: 1.5;">
+                    <p style="z-index: 1; width: 250px;">A weighted plurality vote. Your weight is based on your conformity value (i.e., how many of your move suggestion were inline with the other players).</p>
+                  </div>
+                  <td>CC</td>
+                  <td>
+                      <div  id="ccAgg" class="bg" style="width: 0%;"></div>
+                  </td>
+                  <td id="ccVotes" value="cc"></td>
+              </tr>
+              <tr>
+                  <div class="help-tip" style="font-size: 12px; margin-top: 181px; margin-right: -7px; width: 16px; height: 16px; line-height: 1.5;">
+                    <p style="z-index: 1; width: 250px;">The move suggestion of the player with the highest expertise will be used.</p>
+                  </div>
+                  <td>EL</td>
+                  <td>
+                      <div id="elAgg" class="bg2" style="width: 0%;"></div>
+                  </td>
+                  <td id="elVotes" value="el"></td>
+              </tr>
+              <tr>
+                  <div class="help-tip" style="font-size: 12px; margin-top: 201px; margin-right: -7px; width: 16px; height: 16px; line-height: 1.5;">
+                    <p style="z-index: 1; width: 250px;">The move suggestion of the player with the highest conformity will be used.</p>
+                  </div>
+                  <td>CL</td>
+                  <td>
+                      <div id="clAgg" class="bg2" style="width: 0%;"></div>
+                  </td>
+                  <td id="clVotes" value="cl"></td>
+              </tr>
+              <tr>
+                  <div class="help-tip" style="font-size: 12px; margin-top: 221px; margin-right: -7px; width: 16px; height: 16px; line-height: 1.5;">
+                    <p style="z-index: 1; width: 250px;"> The move suggestion of a random player will be used. The player will be randomly re-selected after every turn.</p>
+                  </div>
+                  <td>RL</td>
+                  <td>
+                      <div id="rlAgg" class="bg2" style="width: 0%;"></div>
+                  </td>
+                  <td id="rlVotes" value="rl"></td>
+              </tr>
+          </table>
+        </div>
+        <button id="button" data-behaviour="toggle" style="visibility: hidden;">Toggle disabled state</button>
+
+        <div class="help-tip" style="margin-top: 305px; margin-right: 55px;">
+          <p style="z-index: 1; width: 200px;">An overview of all move choices of the active and inactive aggegators in the last turn.</p>
+        </div>
+        <p id="statsHeading" style="padding-left: 5px; margin-top: -24px; text-align: center; margin-bottom: 12px;">Aggregator Choices<br>Last Turn<span class="underline6"></p>
+        <table style="width:100%; font-size: 1.1em; margin-left: 5px;">
+          <tr>
+            <td id="boardHeading2"><u>EC</u>: <span id="ecMove" value="ecMove"></span></td>
+            <td id="boardHeading2"><u>EL</u>: <span id="elMove" value="elMove"></span></td> 
+          </tr>
+          <tr>
+            <td id="boardHeading2"><u>PC</u>: <span id="pcMove" value="pcMove"></span></td>
+            <td id="boardHeading2"><u>RL</u>: <span id="rlMove" value="rlMove"></span></td> 
+          </tr>
+          <tr>
+            <td id="boardHeading2"><u>CC</u>: <span id="ccMove" value="ccMove"></span></td>
+            <td id="boardHeading2"><u>CL</u>: <span id="clMove" value="clMove"></span></td> 
+          </tr>
+        </table>
+      </div>
+
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/viewerAggStats.js"></script>
+        <script type="text/javascript" src="js/json3.min.js"></script>
+    </body>
+</html>
+
+
+
